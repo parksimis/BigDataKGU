@@ -146,7 +146,8 @@ for link in links:
     browser.get("https://play.google.com"+new_url)
     new_page = browser.page_source
     soup = BeautifulSoup(new_page, "html.parser")
-    new_link = soup.find_all('div', {'class' : 'W4P4ne'})
+    new_link = soup.find_all('div', {'class' : 'W4P4ne'})[0].text
+
 
 print("Description: ", new_link)
 browser.quit()
