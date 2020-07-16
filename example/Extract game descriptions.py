@@ -22,18 +22,27 @@ for link in links:
     new_url = link.a['href']
     browser.get("https://play.google.com"+new_url)
     description = browser.find_element_by_css_selector('.DWPxHb div:nth-child(1)').text
-    div_descr.append( description)
+    div_descr.append(description)
 
 
 browser.quit()
 
 
-'''import pytagcloud
+from konlpy.tag import Okt
+import pytagcloud
+from collections import Counter
 
-tag = [('hello', 100), ('world', 80), ('nice', 60), ('to', 20), ('meet', 10), ('Park', 200),
-       ('Hi', 400), ('Bye', 300)]
+okt = Okt()
+for sentence in div_descr:
+    nouns = okt.nouns(sentence)
+    count = Counter(nouns)
+
+
+
+import pytagcloud
+tag = count.most_common(100)
 tag_list = pytagcloud.make_tags(tag, maxsize=50)
-pytagcloud.create_tag_image(tag_list, 'word_cloud.jpg', size=(300, 600), rectangular=False)
+pytagcloud.create_tag_image(tag_list, 'word_cloud.jpg', size=(900, 600), fontname='Korean', rectangular=False)
 
 import webbrowser
-webbrowser.open('word_cloud.jpg')'''
+webbrowser.open('word_cloud.jpg')
