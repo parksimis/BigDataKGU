@@ -4,7 +4,7 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
-driver_path = '../resources/chromedriver' # driver path
+driver_path = '../resources/chromedriver'  # driver path
 url = 'https://play.google.com/store/apps/top/category/GAME'
 
 browser = webdriver.Chrome(executable_path=driver_path) # Chrome driver
@@ -36,7 +36,6 @@ okt = Okt()
 for sentence in div_descr:
     nouns = okt.nouns(sentence)
     count = Counter(nouns)
-
 
 
 import pytagcloud

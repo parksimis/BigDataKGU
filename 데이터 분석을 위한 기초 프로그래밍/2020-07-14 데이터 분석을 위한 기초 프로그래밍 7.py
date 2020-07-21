@@ -44,7 +44,7 @@ for dept in body:
 
 from selenium import webdriver
 
-driver_path = '../resources/chromedriver' #driver path
+driver_path = '../resources/chromedriver'  #driver path
 url = "http://147.46.178.16:33333/javascript.html"
 
 browser = webdriver.Chrome(executable_path=driver_path)
@@ -60,7 +60,7 @@ browser.quit()
 # Practice Selenium을 통해 네이버 블로그 크롤링
 import time
 
-driver_path = '../resources/chromedriver' #driver path
+driver_path = '../resources/chromedriver'  #driver path
 browser = webdriver.Chrome(executable_path=driver_path)
 
 browser.get("https://blog.naver.com")
@@ -68,8 +68,8 @@ browser.get("https://blog.naver.com")
 time.sleep(1)
 
 boxes = browser.find_elements_by_css_selector('div.info_post')
-print(len(boxes))
-
+print((boxes))
+'''
 for i in range(len(boxes)):
     try:
         title = boxes[i].find_element_by_css_selector('a strong').text
@@ -96,3 +96,4 @@ time.sleep(1)
 textarea = browser.find_element_by_css_selector("#form_find")
 textarea.send_keys('코로나')
 button = browser.find_element_by_css_selector('#sch_form input:nth-child(3)').click()
+'''

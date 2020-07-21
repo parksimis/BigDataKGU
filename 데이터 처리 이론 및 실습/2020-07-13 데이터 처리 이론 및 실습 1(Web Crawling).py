@@ -48,13 +48,13 @@ html_doc= """
 <a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>;
 and they lived at the bottom of a well.</p>
 <p class="story">...</p>
-"""
+
 
 soup = BeautifulSoup(html_doc, 'html.parser')
 print(soup.prettify())
-
+"""
 # Task 3-1 : navigate structures
-print("Task 3-1 : negvigate structures")
+'''print("Task 3-1 : negvigate structures")
 tag = soup.a # soup에서 제일 처음 등장하는 a 태그 전체를 가져옴
 print(tag)
 print(tag.names)
@@ -81,7 +81,7 @@ for link in soup.find_all('a'):
     print(link.get('href'))
     print(link['href'])
 
-print(soup.get_text())
+print(soup.get_text())'''
 
 
 # Task 4 : parse top game charts
@@ -128,7 +128,7 @@ browser.quit()'''
 # Practice 1 : extract game descriptions
 # 구글 플레이스토어에서 게임 설명을 크롤링하기
 
-driver_path = '../resources/chromedriver' # driver path
+driver_path = '../resources/chromedriver'  # driver path
 url = 'https://play.google.com/store/apps/top/category/GAME'
 
 browser = webdriver.Chrome(executable_path=driver_path) # Chrome driver
@@ -137,8 +137,14 @@ page = browser.page_source
 
 soup = BeautifulSoup(page, "html.parser")
 links = soup.find_all('div', {'class': 'b8cIId ReQCgd Q9MA7b'})
+#boxes = browser.find_elements_by_css_selector(".b8cIId.ReQCgd.Q9MA7b a").text
 
-print(links)
+'''import time
+
+for link in boxes:
+    browser.get(link)
+    time.sleep(1)'''
+
 
 div_descr = []
 for link in links:
@@ -147,7 +153,7 @@ for link in links:
     new_page = browser.page_source
     soup = BeautifulSoup(new_page, "html.parser")
     new_link = soup.find_all('div', {'class' : 'W4P4ne'})[0].text
-
+    div_descr.append(new_link)
 
 print("Description: ", new_link)
 browser.quit()
