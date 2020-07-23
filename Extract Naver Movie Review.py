@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 driver_path = 'resources/chromedriver'
 url = 'https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20200721'
 
-browser = webdriver.Chrome(executable_path=driver_path) # Chrome driver
+'''browser = webdriver.Chrome(executable_path=driver_path) # Chrome driver
 browser.get(url)
 
 soup = BeautifulSoup(browser.page_source, 'html.parser')
@@ -21,18 +21,18 @@ for movie_link in ranking_links:
     browser.get('https://movie.naver.com/' + movie_url)
     button = browser.find_element_by_css_selector('.end_sub_tab li:nth-child(5) a').click()
     new_url = browser.page_source
-    soup = BeautifulSoup(new_url, 'html.parser')
+    soup = BeautifulSoup(new_url, 'html.parser')'''
 
 
-'''driver_path = 'resources/chromedriver'  
+driver_path = 'resources/chromedriver'
 url = 'https://movie.naver.com/movie/bi/mi/point.nhn?code=171539'
 
 browser = webdriver.Chrome(executable_path=driver_path) # Chrome driver
 browser.get(url)
 temp_link = browser.page_source
 soup = BeautifulSoup(temp_link, 'html.parser')
-
-temp = browser.find_elements_by_css_selector('.input_netizen .score_reple')
+temp = soup.find_all({'class' : "ifr_area basic_ifr"}, {'class' : 'score_result'})
+#temp = browser.find_elements_by_css_selector('.ifr_area.basic_ifr .score_result .score_reple')
 
 browser.quit()
-'''
+
